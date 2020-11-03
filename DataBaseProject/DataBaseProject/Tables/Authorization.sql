@@ -1,6 +1,7 @@
 ﻿CREATE TABLE [dbo].[Authorization]
 (
-	[Id] INT NOT NULL , 
+	[ID] INT NOT NULL PRIMARY KEY, 
     [Password] NCHAR(10) NULL, 
-    [UserID] INT NOT NULL
+    [UserID] INT NOT NULL, 
+    CONSTRAINT UserAuthorizationFK FOREIGN KEY (UserID) REFERENCES [User]([ID])
 )

@@ -1,7 +1,8 @@
 ﻿CREATE TABLE [dbo].[User]
 (
-	[Id] INT NOT NULL PRIMARY KEY, 
+	[ID] INT NOT NULL PRIMARY KEY, 
     [Name] NCHAR(25) NULL, 
     [Surname] NCHAR(25) NULL, 
-    [Email] NCHAR(40) NULL
+    [Email] NCHAR(40) NULL, 
+    [Phone] NCHAR(15) NULL
 )

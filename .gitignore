@@ -16,3 +16,10 @@
 /BlogDataBase/.vs/BlogDataBase/v16
 /BlogDataBase/BlogDataBase/bin/Debug
 /BlogDataBase/BlogDataBase/obj/Debug
+/BlogApp/.vs/BlogApp/DesignTimeBuild
+/BlogApp/BlogApp/bin/Debug/netcoreapp3.1
+/WebBlogApp/.vs/WebBlogApp/v16
+/WebBlogApp/WebBlogApp/obj
+/WebBlogApp/WebBlogApp/Properties
+/WebBlogApp/WebBlogApp/appsettings.Development.json
+/WebBlogApp/WebBlogApp/appsettings.json

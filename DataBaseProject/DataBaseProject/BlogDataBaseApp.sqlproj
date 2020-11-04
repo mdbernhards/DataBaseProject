@@ -60,15 +60,11 @@
     <Folder Include="Tables" />
   </ItemGroup>
   <ItemGroup>
-    <Build Include="Tables\Post.sql" />
-    <Build Include="Tables\User.sql" />
-    <Build Include="Tables\Authorization.sql" />
-    <Build Include="ForeignKeyConstraint1.sql" />
+    <Build Include="Authorization.sql" />
+    <Build Include="Post.sql" />
+    <Build Include="User.sql" />
   </ItemGroup>
   <ItemGroup>
     <RefactorLog Include="BlogDataBaseApp.refactorlog" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="index.htm" />
   </ItemGroup>
 </Project>

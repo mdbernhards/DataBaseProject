@@ -5,6 +5,8 @@ VisualStudioVersion = 16.0.30621.155
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "BlogDataBaseApp", "DataBaseProject\BlogDataBaseApp.sqlproj", "{8EC11B21-B1F7-4C77-8A98-CE235E90E29C}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlogApp", "BlogApp\BlogApp.csproj", "{E78E2900-3F21-4C77-8239-8E11C19720EA}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -17,6 +19,10 @@ Global
 		{8EC11B21-B1F7-4C77-8A98-CE235E90E29C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8EC11B21-B1F7-4C77-8A98-CE235E90E29C}.Release|Any CPU.Build.0 = Release|Any CPU
 		{8EC11B21-B1F7-4C77-8A98-CE235E90E29C}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{E78E2900-3F21-4C77-8239-8E11C19720EA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E78E2900-3F21-4C77-8239-8E11C19720EA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E78E2900-3F21-4C77-8239-8E11C19720EA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E78E2900-3F21-4C77-8239-8E11C19720EA}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

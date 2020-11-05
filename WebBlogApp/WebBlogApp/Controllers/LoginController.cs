@@ -28,6 +28,7 @@ namespace WebBlogApp.Controllers
                 }
 
             }
+            catch { }
         }
     }
 }

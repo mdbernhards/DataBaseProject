@@ -23,3 +23,7 @@
 /WebBlogApp/WebBlogApp/Properties
 /WebBlogApp/WebBlogApp/appsettings.Development.json
 /WebBlogApp/WebBlogApp/appsettings.json
+/WebBlogApp/.vs/WebBlogApp/config
+/WebBlogApp/WebBlogApp/bin/Debug/netcoreapp3.1
+/BlogDataBase/BlogDataBase/BlogDataBase.dbmdl
+/BlogDataBase/BlogDataBase/BlogDataBase.jfm

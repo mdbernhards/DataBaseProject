@@ -14,6 +14,9 @@ namespace WebBlogApp.Controllers
             string queryString = "SELECT * FROM dbo.Users Where email = @email AND password = @password";
 
             SqlCommand command = new SqlCommand(queryString, connection.Connection);
+            command.Parameters.AddWithValue("@email", email);
+            command.Parameters.AddWithValue("@password", password);
+
             SqlDataReader reader = command.ExecuteReader();
 
             try

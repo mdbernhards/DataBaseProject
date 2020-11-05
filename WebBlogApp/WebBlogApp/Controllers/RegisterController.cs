@@ -1,8 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
+using System.Data.SqlClient;
 using Microsoft.AspNetCore.Mvc;
 
 namespace WebBlogApp.Controllers
@@ -16,6 +13,28 @@ namespace WebBlogApp.Controllers
         {
             if (name != default && surname != default && password != default && email != default && phoneNr != default)
             {
+                DBConnect connection = new DBConnect();
+                try
+                {
+                    string queryString = "INSERT INTO User (name, surname, password, email, phoneNr) VALUES (@name, @surname, @password, @email, @phoneNr";
+
+                    SqlCommand command = new SqlCommand(queryString, connection.Connection);
+                    command.Parameters.AddWithValue("@name", name);
+                    command.Parameters.AddWithValue("@surname", surname);
+                    command.Parameters.AddWithValue("@password", password);
+                    command.Parameters.AddWithValue("@email", email);
+                    command.Parameters.AddWithValue("@phoneNr", phoneNr);
+
+                    SqlDataReader reader = command.ExecuteReader();
+                    command.Parameters.Clear();
+
+                }
+                catch(Exception ex)
+                {
+                    Content(ex.Message);
+                    connection.Connection.Close();
+                    //fail
+                }
 
             }
             else

@@ -1,5 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using System.Collections.Generic;
 using System.Data.SqlClient;
+using WebBlogApp.Models;
 
 namespace WebBlogApp.Controllers
 {
@@ -15,13 +17,13 @@ namespace WebBlogApp.Controllers
         }
 
         [HttpGet]
-        public void Login(string email, string password)
+        public User Login(User user)
         {
-            string queryString = "SELECT * FROM dbo.Users Where email = @email AND password = @password";
+            string queryString = "SELECT * FROM dbo.Users Where Username = @username AND password = @password";
 
             SqlCommand command = new SqlCommand(queryString, connection.Connection);
-            command.Parameters.AddWithValue("@email", email);
-            command.Parameters.AddWithValue("@password", password);
+            command.Parameters.AddWithValue("@username", user.Username);
+            command.Parameters.AddWithValue("@password", user.Password);
 
             SqlDataReader reader = command.ExecuteReader();
 
@@ -29,17 +31,16 @@ namespace WebBlogApp.Controllers
             {
                 if(reader.HasRows)
                 {
-                    //logged in
+                    return user;
                 }
                 else
                 {
-                    //username or password invalid
+                    return null;
                 }
-
             }
             catch 
             {
-                
+                return null;
             }
         }
     }

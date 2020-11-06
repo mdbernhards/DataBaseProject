@@ -9,7 +9,6 @@ namespace WebBlogApp
         public SqlConnection Connection;
         public DBConnect()
         {
-
             try
             {
                 Console.Write("Connecting to SQL Server ... ");

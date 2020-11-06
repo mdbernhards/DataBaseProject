@@ -8,12 +8,18 @@ namespace WebBlogApp.Controllers
     [ApiController]
     public class BlogPostController : ControllerBase
     {
+        private DBConnect connection;
 
+        public BlogPostController(DBConnect _connection)
+        {
+            connection = _connection;
+        }
+
+        [HttpPost]
         public void Post(string postText, string userID)
         {
             if (postText != default && userID != default)
             {
-                DBConnect connection = new DBConnect();
                 try
                 {
                     string queryString = "INSERT INTO Post (UserID, PostText, CreationDate) VALUES (@UserID, @PostText, @CreationDate";
@@ -24,7 +30,6 @@ namespace WebBlogApp.Controllers
                     command.Parameters.AddWithValue("@CreationDate", "55/55/2077");
                     SqlDataReader reader = command.ExecuteReader();
                     command.Parameters.Clear();
-
                 }
                 catch (Exception ex)
                 {
@@ -32,11 +37,36 @@ namespace WebBlogApp.Controllers
                     connection.Connection.Close();
                     //Post Failed
                 }
-
             }
             else
             {
                 //Post Failed
+            }
+        }
+
+        [HttpDelete]
+        public void DeletePost(string postID)
+        {
+            if (postID != default)
+            {
+                try
+                {
+                    string queryString = "";
+
+                    SqlCommand command = new SqlCommand(queryString, connection.Connection);
+                    SqlDataReader reader = command.ExecuteReader();
+                    command.Parameters.Clear();
+                }
+                catch (Exception ex)
+                {
+                    Content(ex.Message);
+                    connection.Connection.Close();
+                    //Post Failed
+                }
+            }
+            else
+            {
+                //fail
             }
         }
     }

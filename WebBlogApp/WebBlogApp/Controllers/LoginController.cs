@@ -7,10 +7,16 @@ namespace WebBlogApp.Controllers
     [ApiController]
     public class LoginController : ControllerBase
     {
+        private DBConnect connection;
 
+        public LoginController(DBConnect _connection)
+        {
+            connection = _connection;
+        }
+
+        [HttpGet]
         public void Login(string email, string password)
         {
-            DBConnect connection = new DBConnect();
             string queryString = "SELECT * FROM dbo.Users Where email = @email AND password = @password";
 
             SqlCommand command = new SqlCommand(queryString, connection.Connection);
@@ -31,7 +37,10 @@ namespace WebBlogApp.Controllers
                 }
 
             }
-            catch { }
+            catch 
+            {
+                
+            }
         }
     }
 }

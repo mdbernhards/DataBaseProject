@@ -8,12 +8,18 @@ namespace WebBlogApp.Controllers
     [ApiController]
     public class RegisterController : ControllerBase
     {
+        private DBConnect connection;
 
+        public RegisterController(DBConnect _connection)
+        {
+            connection = _connection;
+        }
+
+        [HttpPost]
         public void Register(string name, string surname, string password, string email, string phoneNr)
         {
             if (name != default && surname != default && password != default && email != default && phoneNr != default)
             {
-                DBConnect connection = new DBConnect();
                 try
                 {
                     string queryString = "INSERT INTO User (name, surname, password, email, phoneNr) VALUES (@name, @surname, @password, @email, @phoneNr";
@@ -27,7 +33,6 @@ namespace WebBlogApp.Controllers
 
                     SqlDataReader reader = command.ExecuteReader();
                     command.Parameters.Clear();
-
                 }
                 catch(Exception ex)
                 {
@@ -35,7 +40,6 @@ namespace WebBlogApp.Controllers
                     connection.Connection.Close();
                     //fail
                 }
-
             }
             else
             {
@@ -43,6 +47,7 @@ namespace WebBlogApp.Controllers
             }
         }
 
+        [HttpGet]
         public bool CheckIfUserExists()
         {
             return true;

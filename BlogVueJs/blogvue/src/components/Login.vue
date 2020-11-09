@@ -4,12 +4,14 @@
             <h1>Blog</h1>
             <h3>Login</h3>
         </div>
-            <label for="fname">Username: </label>
-            <input type="text" id="user" name="fname"><br><br>
-            <label for="lname">Password: </label>
-            <input type="text" id="password" name="lname"><br><br>
+        <div>
+            <label for="username">Username: </label>
+            <input type="text" id="user" name="username"><br><br>
+            <label for="password">Password: </label>
+            <input type="password" id="password" name="password"><br><br>
             <input @click="loginUser()" type="submit" value="Login">
             <h1>{{data}}</h1>
+        </div>
     </div>
 </template>
 

@@ -19,7 +19,7 @@ namespace WebBlogApp.Controllers
         [HttpPost]
         public void Post(string postText, string userID)
         {
-            if (postText != default && userID != default)
+            if (postText != default && userID != default && CheckIfPostExists(postText, userID))
             {
                 try
                 {
@@ -36,12 +36,7 @@ namespace WebBlogApp.Controllers
                 {
                     Content(ex.Message);
                     connection.Connection.Close();
-                    //Post Failed
                 }
-            }
-            else
-            {
-                //Post Failed
             }
         }
 
@@ -75,6 +70,37 @@ namespace WebBlogApp.Controllers
         public void GetPosts(string UserID)
         {
 
+        }
+
+        [HttpGet]
+        public bool CheckIfPostExists(string postText, string userID)
+        {
+            try
+            {
+                string queryString = "Select * FROM Post where PostText=@PostText AND UserID=@UserID";
+
+                SqlCommand command = new SqlCommand(queryString, connection.Connection);
+                command.Parameters.AddWithValue("@PostText", postText);
+                command.Parameters.AddWithValue("@UserID", userID);
+
+                SqlDataReader reader = command.ExecuteReader();
+                reader.Read();
+
+                if (reader.HasRows)
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            catch (SqlException e)
+            {
+                Content(e.Message);
+                connection.Connection.Close();
+                return false;
+            }
         }
 
         public void EditPost(string UserID)

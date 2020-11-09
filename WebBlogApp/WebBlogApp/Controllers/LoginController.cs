@@ -22,12 +22,12 @@ namespace WebBlogApp.Controllers
             
             string queryString = "SELECT * FROM [User] Where Username = @Username AND Password = @Password";
 
-            SqlCommand command = new SqlCommand(queryString, connection.Connection);
-            command.Parameters.AddWithValue("@username", username);
-            command.Parameters.AddWithValue("@password", password);
-
             try
             {
+                SqlCommand command = new SqlCommand(queryString, connection.Connection);
+                command.Parameters.AddWithValue("@username", username);
+                command.Parameters.AddWithValue("@password", password);
+
                 SqlDataReader reader = command.ExecuteReader();
                 reader.Read();
 
@@ -41,12 +41,13 @@ namespace WebBlogApp.Controllers
                 else
                 {
                     reader.Close();
-                    return new User(69, "69", "69", "69", "69", "69", "69");
+                    return null;
                 }
             }
             catch (SqlException e)
             {
-                return new User(69, "69", "69", "69", "69", "69", "69");
+                Content(e.Message);
+                return null;
             }
         }
     }

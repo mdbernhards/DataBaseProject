@@ -4,21 +4,48 @@
             <h1>Blog</h1>
             <h3>Login</h3>
         </div>
-        <form action="">
-            <label for="fname">First name: </label>
-            <input type="text" id="fname" name="fname"><br><br>
-            <label for="lname">Last name: </label>
-            <input type="text" id="lname" name="lname"><br><br>
-            <input type="submit" value="Login">
-        </form>     
+            <label for="fname">Username: </label>
+            <input type="text" id="user" name="fname"><br><br>
+            <label for="lname">Password: </label>
+            <input type="text" id="password" name="lname"><br><br>
+            <input @click="loginUser()" type="submit" value="Login">
+            <h1>{{data}}</h1>
     </div>
 </template>
 
 <script>
-export default {
-    name: 'Login',
-    mounted () {
+    import axios from "axios";
 
-    }   
-}
+    export default {
+        name: 'Login',
+        data (){
+            return{
+                data: null
+            }
+        },
+        methods: {
+            
+            loginUser(){
+                
+                var config = {
+                headers: { 'Access-Control-Allow-Origin': 'http://localhost:8080' }
+                }; 
+
+                axios
+                    .get('https://localhost:44310/login?username='+ document.getElementById("user").value + '&password=' + document.getElementById("password").value, config)
+                    .then(response => {
+                        this.data = response;
+                    })
+                    .catch(error => {
+                        console.log(error);
+                        this.errored = true;
+                    })
+                    .finally(() => this.loading = false);
+
+                if(this.loading == false){
+                    window.location.href = 'http://localhost:8080/Register';
+                }
+            }
+        }
+    }
 </script>

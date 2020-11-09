@@ -1,46 +1,52 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using System.Collections.Generic;
+﻿using Microsoft.AspNetCore.Cors;
+using Microsoft.AspNetCore.Mvc;
 using System.Data.SqlClient;
+using WebBlogApp.Interface;
 using WebBlogApp.Models;
 
 namespace WebBlogApp.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("[controller]")]
     [ApiController]
     public class LoginController : ControllerBase
     {
-        private DBConnect connection;
+        private readonly IDBConnect connection;
 
-        public LoginController(DBConnect _connection)
+        public LoginController(IDBConnect _connection)
         {
             connection = _connection;
         }
 
-        [HttpGet]
-        public User Login(User user)
+        public User Login(string username, string password)
         {
-            string queryString = "SELECT * FROM dbo.Users Where Username = @username AND password = @password";
+            
+            string queryString = "SELECT * FROM [User] Where Username = @Username AND Password = @Password";
 
             SqlCommand command = new SqlCommand(queryString, connection.Connection);
-            command.Parameters.AddWithValue("@username", user.Username);
-            command.Parameters.AddWithValue("@password", user.Password);
-
-            SqlDataReader reader = command.ExecuteReader();
+            command.Parameters.AddWithValue("@username", username);
+            command.Parameters.AddWithValue("@password", password);
 
             try
             {
-                if(reader.HasRows)
+                SqlDataReader reader = command.ExecuteReader();
+                reader.Read();
+
+                if (reader.HasRows)
                 {
+                    User user = new User(reader.GetInt32(reader.GetOrdinal("ID")), reader[1].ToString(), reader[2].ToString(), reader[3].ToString(), reader[4].ToString(), reader[5].ToString(), reader[6].ToString());
+
+                    reader.Close();
                     return user;
                 }
                 else
                 {
-                    return null;
+                    reader.Close();
+                    return new User(69, "69", "69", "69", "69", "69", "69");
                 }
             }
-            catch 
+            catch (SqlException e)
             {
-                return null;
+                return new User(69, "69", "69", "69", "69", "69", "69");
             }
         }
     }

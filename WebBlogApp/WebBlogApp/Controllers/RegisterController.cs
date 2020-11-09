@@ -1,16 +1,17 @@
 ﻿using System;
 using System.Data.SqlClient;
 using Microsoft.AspNetCore.Mvc;
+using WebBlogApp.Interface;
 
 namespace WebBlogApp.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("[controller]")]
     [ApiController]
     public class RegisterController : ControllerBase
     {
-        private DBConnect connection;
+        private IDBConnect connection;
 
-        public RegisterController(DBConnect _connection)
+        public RegisterController(IDBConnect _connection)
         {
             connection = _connection;
         }
@@ -18,7 +19,7 @@ namespace WebBlogApp.Controllers
         [HttpPost]
         public void Register(string name, string surname, string password, string email, string phoneNr)
         {
-            if (name != default && surname != default && password != default && email != default && phoneNr != default)
+            if (CheckIfUserExists(name, surname, password, email, phoneNr))
             {
                 try
                 {
@@ -48,7 +49,7 @@ namespace WebBlogApp.Controllers
         }
 
         [HttpGet]
-        public bool CheckIfUserExists()
+        public bool CheckIfUserExists(string name, string surname, string password, string email, string phoneNr)
         {
             return true;
         }

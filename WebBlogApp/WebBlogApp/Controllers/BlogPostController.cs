@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Data.SqlClient;
 using Microsoft.AspNetCore.Mvc;
+using WebBlogApp.Interface;
 
 namespace WebBlogApp.Controllers
 {
@@ -8,9 +9,9 @@ namespace WebBlogApp.Controllers
     [ApiController]
     public class BlogPostController : ControllerBase
     {
-        private DBConnect connection;
+        private readonly IDBConnect connection;
 
-        public BlogPostController(DBConnect _connection)
+        public BlogPostController(IDBConnect _connection)
         {
             connection = _connection;
         }
@@ -68,6 +69,17 @@ namespace WebBlogApp.Controllers
             {
                 //fail
             }
+        }
+
+        [HttpGet]
+        public void GetPosts(string UserID)
+        {
+
+        }
+
+        public void EditPost(string UserID)
+        {
+
         }
     }
 }

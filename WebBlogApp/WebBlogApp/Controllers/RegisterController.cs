@@ -2,7 +2,6 @@
 using System.Data.SqlClient;
 using Microsoft.AspNetCore.Mvc;
 using WebBlogApp.Interface;
-using WebBlogApp.Models;
 
 namespace WebBlogApp.Controllers
 {

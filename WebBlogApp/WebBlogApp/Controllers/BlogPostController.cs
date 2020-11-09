@@ -69,7 +69,6 @@ namespace WebBlogApp.Controllers
         [HttpGet]
         public void GetPosts(string UserID)
         {
-
         }
 
         [HttpGet]
@@ -105,7 +104,6 @@ namespace WebBlogApp.Controllers
 
         public void EditPost(string UserID)
         {
-
         }
     }
 }

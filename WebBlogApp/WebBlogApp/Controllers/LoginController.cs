@@ -1,5 +1,4 @@
-﻿using Microsoft.AspNetCore.Cors;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using System.Data.SqlClient;
 using WebBlogApp.Interface;
 using WebBlogApp.Models;
@@ -19,7 +18,6 @@ namespace WebBlogApp.Controllers
 
         public User Login(string username, string password)
         {
-            
             string queryString = "SELECT * FROM [User] Where Username = @Username AND Password = @Password";
 
             try

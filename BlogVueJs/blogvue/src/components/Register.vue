@@ -33,7 +33,7 @@
 </template>
 
 <script>
-export default {
+    export default {
         name: 'Register',
         data (){
             return{
@@ -41,9 +41,7 @@ export default {
             }
         },
         methods: {
-            
             register(){
-
             }
         }
     }

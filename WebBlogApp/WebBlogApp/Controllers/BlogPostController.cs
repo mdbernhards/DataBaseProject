@@ -5,17 +5,26 @@ using WebBlogApp.Interface;
 
 namespace WebBlogApp.Controllers
 {
+    /// <summary>
+    /// Class for all the methods that control the Blogging proccess
+    /// </summary>
     [Route("api/[controller]")]
     [ApiController]
     public class BlogPostController : ControllerBase
     {
         private readonly IDBConnect connection;
-
+        
+        /// <summary>
+        /// Class for all the methods that control the Blogging proccess, injects the database
+        /// </summary>
         public BlogPostController(IDBConnect _connection)
         {
             connection = _connection;
         }
 
+        /// <summary>
+        /// Creates a post in database if it doesn't exist already
+        /// </summary>
         [HttpPost]
         public void Post(string postText, string userID)
         {
@@ -40,6 +49,9 @@ namespace WebBlogApp.Controllers
             }
         }
 
+        /// <summary>
+        /// Deletes the post by it's ID if it exists
+        /// </summary>
         [HttpDelete]
         public void DeletePost(string postID)
         {
@@ -66,11 +78,17 @@ namespace WebBlogApp.Controllers
             }
         }
 
+        /// <summary>
+        /// Gets all posts of the user with the given ID
+        /// </summary>
         [HttpGet]
         public void GetPosts(string UserID)
         {
         }
 
+        /// <summary>
+        /// Checks if a post exists, returns true if it does
+        /// </summary>
         [HttpGet]
         public bool CheckIfPostExists(string postText, string userID)
         {
@@ -102,6 +120,9 @@ namespace WebBlogApp.Controllers
             }
         }
 
+        /// <summary>
+        /// Edits post by replacing an existing posts text
+        /// </summary>
         public void EditPost(string UserID)
         {
         }

@@ -1,5 +1,8 @@
 ﻿namespace WebBlogApp.Models
 {
+    /// <summary>
+    /// Class for creating User object
+    /// </summary>
     public class User
     {
         public int ID { get; set; }
@@ -10,6 +13,9 @@
         public string Username { get; set; }
         public string Password { get; set; }
 
+        /// <summary>
+        /// Class for creating User object
+        /// </summary>
         public User(int id, string name, string surname, string email, string phone, string username, string password)
         {
             ID = id;

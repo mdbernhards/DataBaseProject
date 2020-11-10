@@ -82,7 +82,7 @@ namespace WebBlogApp.Controllers
         /// Gets all posts of the user with the given ID
         /// </summary>
         [HttpGet]
-        public void GetPosts(string UserID)
+        public void GetPosts(string userID)
         {
         }
 
@@ -123,8 +123,9 @@ namespace WebBlogApp.Controllers
         /// <summary>
         /// Edits post by replacing an existing posts text
         /// </summary>
-        public void EditPost(string UserID)
+        public void EditPost(string userID)
         {
+
         }
     }
 }

@@ -17,6 +17,9 @@ namespace WebBlogApp.DatabaseQueries
             connection = _connection;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
         public void LoginQuery()
         {
 

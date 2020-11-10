@@ -17,26 +17,41 @@ namespace WebBlogApp.DatabaseQueries
             connection = _connection;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
         public void PostQuery()
         {
 
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
         public void DeleteQuery()
         {
 
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
         public void GetPostsQuery()
         {
 
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
         public void GetPostQuery()
         {
 
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
         public void EditPostQuery()
         {
 

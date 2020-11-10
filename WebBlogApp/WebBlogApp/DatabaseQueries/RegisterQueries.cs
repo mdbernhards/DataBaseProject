@@ -16,11 +16,18 @@ namespace WebBlogApp.DatabaseQueries
         {
             connection = _connection;
         }
+
+        /// <summary>
+        /// 
+        /// </summary>
         public void RegisterQuery()
         {
 
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
         public void GetUsertQuery()
         {
 

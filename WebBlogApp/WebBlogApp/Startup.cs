@@ -7,8 +7,14 @@ using WebBlogApp.Interface;
 
 namespace WebBlogApp
 {
+    /// <summary>
+    /// Configures everything needed for the API to work
+    /// <summary>
     public class Startup
     {
+        /// <summary>
+        /// Configures everything needed for the API to work
+        /// <summary>
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
@@ -16,7 +22,9 @@ namespace WebBlogApp
 
         public IConfiguration Configuration { get; }
 
-        // This method gets called by the runtime. Use this method to add services to the container.
+        /// <summary>
+        /// This method gets called by the runtime. Use this method to add services to the container.
+        /// <summary>
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
@@ -34,7 +42,9 @@ namespace WebBlogApp
             });
         }
 
-        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
+        /// <summary>
+        /// This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
+        /// <summary>
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             if (env.IsDevelopment())

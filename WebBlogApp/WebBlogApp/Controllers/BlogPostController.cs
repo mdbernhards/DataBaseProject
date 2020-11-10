@@ -1,6 +1,5 @@
-﻿using System;
-using System.Data.SqlClient;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
+using WebBlogApp.DatabaseQueries;
 using WebBlogApp.Interface;
 
 namespace WebBlogApp.Controllers
@@ -12,14 +11,14 @@ namespace WebBlogApp.Controllers
     [ApiController]
     public class BlogPostController : ControllerBase
     {
-        private readonly IDBConnect connection;
-        
+        private readonly BlogPostQueries blogPostQueries;
+
         /// <summary>
         /// Class for all the methods that control the Blogging proccess, injects the database
         /// </summary>
         public BlogPostController(IDBConnect _connection)
         {
-            connection = _connection;
+            blogPostQueries = new BlogPostQueries(_connection);
         }
 
         /// <summary>
@@ -28,24 +27,9 @@ namespace WebBlogApp.Controllers
         [HttpPost]
         public void Post(string postText, string userID)
         {
-            if (postText != default && userID != default && CheckIfPostExists(postText, userID))
+            if (postText != default && userID != default && !CheckIfPostExists(postText, userID))
             {
-                try
-                {
-                    string queryString = "INSERT INTO Post (UserID, PostText, CreationDate) VALUES (@UserID, @PostText, @CreationDate";
-
-                    SqlCommand command = new SqlCommand(queryString, connection.Connection);
-                    command.Parameters.AddWithValue("@UserID", userID);
-                    command.Parameters.AddWithValue("@PostText", postText);
-                    command.Parameters.AddWithValue("@CreationDate", "55/55/2077");
-                    SqlDataReader reader = command.ExecuteReader();
-                    command.Parameters.Clear();
-                }
-                catch (Exception ex)
-                {
-                    Content(ex.Message);
-                    connection.Connection.Close();
-                }
+                blogPostQueries.PostQuery(postText, userID);
             }
         }
 
@@ -57,24 +41,7 @@ namespace WebBlogApp.Controllers
         {
             if (postID != default)
             {
-                try
-                {
-                    string queryString = "";
-
-                    SqlCommand command = new SqlCommand(queryString, connection.Connection);
-                    SqlDataReader reader = command.ExecuteReader();
-                    command.Parameters.Clear();
-                }
-                catch (Exception ex)
-                {
-                    Content(ex.Message);
-                    connection.Connection.Close();
-                    //Post Failed
-                }
-            }
-            else
-            {
-                //fail
+                blogPostQueries.DeleteQuery(postID);
             }
         }
 
@@ -84,6 +51,7 @@ namespace WebBlogApp.Controllers
         [HttpGet]
         public void GetPosts(string userID)
         {
+
         }
 
         /// <summary>
@@ -92,32 +60,7 @@ namespace WebBlogApp.Controllers
         [HttpGet]
         public bool CheckIfPostExists(string postText, string userID)
         {
-            try
-            {
-                string queryString = "Select * FROM Post where PostText=@PostText AND UserID=@UserID";
-
-                SqlCommand command = new SqlCommand(queryString, connection.Connection);
-                command.Parameters.AddWithValue("@PostText", postText);
-                command.Parameters.AddWithValue("@UserID", userID);
-
-                SqlDataReader reader = command.ExecuteReader();
-                reader.Read();
-
-                if (reader.HasRows)
-                {
-                    return true;
-                }
-                else
-                {
-                    return false;
-                }
-            }
-            catch (SqlException e)
-            {
-                Content(e.Message);
-                connection.Connection.Close();
-                return false;
-            }
+            return blogPostQueries.CheckIfPostExistsQuery(postText, userID);
         }
 
         /// <summary>

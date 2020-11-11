@@ -1,4 +1,5 @@
-﻿using System.Data.SqlClient;
+﻿using System;
+using System.Data.SqlClient;
 using WebBlogApp.Interface;
 using WebBlogApp.Models;
 
@@ -48,7 +49,7 @@ namespace WebBlogApp.DatabaseQueries
                     return null;
                 }
             }
-            catch
+            catch (SqlException ex)
             {
                 return null;
             }

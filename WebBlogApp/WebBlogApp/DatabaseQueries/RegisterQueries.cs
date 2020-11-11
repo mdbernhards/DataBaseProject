@@ -1,4 +1,5 @@
-﻿using System.Data.SqlClient;
+﻿using System;
+using System.Data.SqlClient;
 using WebBlogApp.Interface;
 
 namespace WebBlogApp.DatabaseQueries
@@ -38,7 +39,7 @@ namespace WebBlogApp.DatabaseQueries
                 SqlDataReader reader = command.ExecuteReader();
                 command.Parameters.Clear();
             }
-            catch
+            catch (SqlException ex)
             {
                 connection.Connection.Close();
             }
@@ -68,7 +69,7 @@ namespace WebBlogApp.DatabaseQueries
                     return false;
                 }
             }
-            catch
+            catch (SqlException ex)
             {
                 connection.Connection.Close();
                 return false;

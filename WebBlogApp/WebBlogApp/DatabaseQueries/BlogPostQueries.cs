@@ -1,4 +1,5 @@
-﻿using System.Data.SqlClient;
+﻿using System;
+using System.Data.SqlClient;
 using WebBlogApp.Interface;
 
 namespace WebBlogApp.DatabaseQueries
@@ -92,7 +93,7 @@ namespace WebBlogApp.DatabaseQueries
                     return false;
                 }
             }
-            catch
+            catch (SqlException ex)
             {
                 connection.Connection.Close();
                 return false;
